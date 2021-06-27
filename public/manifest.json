@@ -1,0 +1,31 @@
+{
+  "manifest_version": 2,
+
+  "name": "EPNS",
+  "description": "EPNS Notification to receive notifications",
+  "version": "0.0.1",
+
+  "browser_action": {
+    "default_icon": "epns-small2.png",
+    "default_popup": "index.html",
+    "default_title": "EPNS Ectension"
+  },
+  "icons": {
+    "16": "./epns-small2.png",
+    "32": "./epns-small2.png",
+    "48": "./epns-small2.png",
+    "128": "./epns-small2.png"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "content_security_policy": "script-src 'self' 'sha256-VaAnP2J3IR6odQXL8lBt9mNxNYS/U3Eh+wJ6nr5I82A=' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "permissions": [
+    "background",
+    "storage",
+    "notifications",
+    "webRequest",
+    "unlimitedStorage"
+  ]
+}
