@@ -44,7 +44,7 @@ export default function LastPage(props) {
     }
     axios
       .post(
-        'https://backend-staging.epns.io/apis/pushtokens/register_no_auth',
+        'https://backend.epns.io/apis/pushtokens/register_no_auth',
         object,
       )
       .then((response) => {
