@@ -29,16 +29,16 @@ export const getToken = () => {
     })
     .then((currentToken) => {
       if (currentToken) {
-        console.log('current token for client: ', currentToken)
+       
         return currentToken
       } else {
-        console.log(
+        console.error(
           'No registration token available. Request permission to generate one.',
         )
       }
     })
     .catch((err) => {
-      console.log('An error occurred while retrieving token. ', err)
+      console.error('An error occurred while retrieving token. ', err)
       // catch error while creating client token
     })
 }

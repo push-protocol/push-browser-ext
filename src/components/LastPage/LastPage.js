@@ -54,7 +54,7 @@ export default function LastPage(props) {
       })
 
       .catch(function (err) {
-        console.log('Error Occurred.' + err)
+        console.error('Error Occurred.' + err)
         setLoader(false)
         setStatus(false)
       })

@@ -23,10 +23,8 @@ function App() {
     const { component, props } = getCurrent()
     const components = getComponentStack()
     chrome.storage.local.get(['epns'], function (result) {
-      console.log(result.epns)
+     
       if (result.epns) {
-        console.log("app")
-        console.log(result.epns.wallet)
         setWalletAddr(result.epns.wallet)
         setRegistered(true)
       }
