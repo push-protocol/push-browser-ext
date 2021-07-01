@@ -55,7 +55,7 @@ export default function NotificationPage() {
 
   useEffect(() => {
     chrome.storage.local.get(['epns'], function (result) {
-      
+
       if (result.epns) {
         setWallet(result.epns.wallet)
         setObject(result.epns)
@@ -66,13 +66,13 @@ export default function NotificationPage() {
     let walletTemp = wallet
     let fh = walletTemp.slice(0, 6)
     let sh = walletTemp.slice(-6)
-   
+
     let final = fh + '......' + sh
     setAddr(final)
   }, [wallet])
 
   const callAPI = async () => {
-    
+
     const walletAddr = wallet.toLowerCase()
     const apiURL = 'https://backend.epns.io/apis/feeds/get_feeds'
     const response = await fetch(apiURL, {
@@ -114,10 +114,12 @@ export default function NotificationPage() {
             seed={wallet}
             size={10}
             scale={3}
-           
+
             className="identicon"
           /></div>
         <div id="wallet-address">{addr}</div>
+
+      {/*
         <div
           style={{
             display: 'flex',
@@ -129,6 +131,7 @@ export default function NotificationPage() {
           <div id="logo"></div>
           <div id="settings"></div>
         </div>
+        */}
         <div>
           {/* <Link component={AddressPage} props={{ object, type: 'renter' }}>
           <button id="button"><span id="button-text">Switch Account</span></button>
@@ -149,7 +152,7 @@ export default function NotificationPage() {
               }}
               onClick={() => {
                 if (notif.payload.data.acta) {
-                  
+
                 }
               }}
             >
