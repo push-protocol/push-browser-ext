@@ -44,7 +44,7 @@ export default function LastPage(props) {
     }
     axios
       .post(
-        'https://backend-staging.epns.io/apis/pushtokens/register_no_auth',
+        'https://backend.epns.io/apis/pushtokens/register_no_auth',
         object,
       )
       .then((response) => {
@@ -54,7 +54,7 @@ export default function LastPage(props) {
       })
 
       .catch(function (err) {
-        console.log('Error Occurred.' + err)
+        console.error('Error Occurred.' + err)
         setLoader(false)
         setStatus(false)
       })
