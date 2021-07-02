@@ -51,8 +51,10 @@ export default function AddressPage(props) {
         <Circle3 side="right" />
         <div id="wallet-logo"></div>
       </div>
-      <p id="wallet-text"><b>Wallet Address!</b></p>
-      
+      <p id="wallet-text">
+        <b>Wallet Address!</b>
+      </p>
+
       <div id="wallet-decription-text">
         <b>EPNS</b> requires your wallet address to deliver
         <span id="notification-text">notifications</span> meant for you!
@@ -76,7 +78,12 @@ export default function AddressPage(props) {
             </button>
           </div>
           <div>
-            <button id="cancel-button" disabled>
+            <button
+              id="cancel-button"
+              onClick={() => {
+                window.close()
+              }}
+            >
               Cancel
             </button>
           </div>
@@ -88,7 +95,14 @@ export default function AddressPage(props) {
               <button id="verify-button">Verify</button>
             </div>
             <div>
-              <button id="cancel-button">Cancel</button>
+              <button
+                id="cancel-button"
+                onClick={() => {
+                  window.close()
+                }}
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </Link>
