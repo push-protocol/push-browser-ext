@@ -16,31 +16,42 @@ var firebaseConfig = {
   measurementId: "G-X1L5P2E4EP"
 };
 
-
 firebase.initializeApp(firebaseConfig)
 const messaging = firebase.messaging()
 
 export const getToken = () => {
-  return messaging
-    .getToken({
-      vapidKey:
-      //epns
-      "BOMOB--KihZkwM8SQ_OrPEsuu8UcSYiRB9AvMjsWil3WJDmxBEcDex8g4d5rFGgA8U-7esfRM5pvR98jaE1nX0M",
-    })
-    .then((currentToken) => {
-      if (currentToken) {
-       
-        return currentToken
-      } else {
-        console.error(
-          'No registration token available. Request permission to generate one.',
-        )
+  return new Promise(async (resolve, reject) => {
+    const numOfAttempts = 3
+    let tries = 1
+    let attempting = true
+
+    while (attempting) {
+      try {
+        const currentToken = await messaging.getToken({vapidKey: "BOMOB--KihZkwM8SQ_OrPEsuu8UcSYiRB9AvMjsWil3WJDmxBEcDex8g4d5rFGgA8U-7esfRM5pvR98jaE1nX0M"});
+
+        if (currentToken) {
+          resolve(currentToken)
+          attempting = false
+        }
+        else {
+          console.error('No registration token available. Request permission to generate one.')
+          reject(true)
+          attempting = false
+        }
       }
-    })
-    .catch((err) => {
-      console.error('An error occurred while retrieving token. ', err)
-      // catch error while creating client token
-    })
+      catch(err) {
+        if (tries > numOfAttempts) {
+          attempting = false;
+          console.error('FCM | Request retries failed, Error: ', err)
+        }
+        else {
+          console.log("FCM | Request Failed... Retrying: " + tries + " / " + numOfAttempts)
+        }
+      }
+
+      tries = tries + 1
+    }
+  })
 }
 
 export const onMessageListener = () =>

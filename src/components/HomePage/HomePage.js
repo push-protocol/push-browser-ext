@@ -1,5 +1,5 @@
 import React from 'react'
-import firebase from 'firebase'
+
 import { useEffect, useState } from 'react'
 import {
   goBack,
@@ -10,7 +10,6 @@ import {
   getCurrent,
   getComponentStack,
 } from 'react-chrome-extension-router'
-import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Button from '@material-ui/core/Button'
@@ -22,9 +21,24 @@ import Circle1 from '../Circle/Circle1'
 import Circle2 from '../Circle/Circle2'
 import Circle3 from '../Circle/Circle3'
 
+import CircularProgress from '@material-ui/core/CircularProgress'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+  loader: {
+    display: 'flex',
+    flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    height: '90%'
+  },
+}))
+
 export default function Home() {
+  const classes = useStyles()
   const [token, setToken] = useState('')
   const [seen, setSeen] = useState(false)
+
   useEffect(() => {
     getToken().then((res) => {
       setToken(res)
@@ -63,11 +77,20 @@ export default function Home() {
       </div>
 
       {seen ? <Info /> : <div></div>}
-      <Link component={AddressPage} props={{ token }}>
-        <button id="button">
-          <span id="button-text">Continue</span>
-        </button>
-      </Link>
+
+      {token &&
+        <Link component={AddressPage} props={{ token }}>
+          <button id="button">
+            <span id="button-text">Continue</span>
+          </button>
+        </Link>
+      }
+
+      {!token &&
+        <div className={classes.loader}>
+          <CircularProgress color="secondary" />
+        </div>
+      }
     </div>
   )
 }
