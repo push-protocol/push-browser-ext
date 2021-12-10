@@ -1,0 +1,10 @@
+.rounded{
+  border-radius: 50%;
+}
+#feeds-icon{
+  height: 25%;
+  width: 100%;
+
+  background: url("../../assests/feed.png");
+  background-repeat: no-repeat;
+}
