@@ -1,8 +1,9 @@
 {
-  "name": "epns-browser-ext",
+  "name": "epns-browser-ext-staging",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@epnsproject/frontend-sdk": "^1.5.2",
     "@material-ui/core": "^4.11.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -10,12 +11,20 @@
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "firebase": "^8.7.0",
+    "gsap": "^3.10.3",
+    "moment": "^2.29.3",
     "react": "^17.0.2",
     "react-blockies": "^1.4.1",
     "react-chrome-extension-router": "^1.2.0",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-moment": "^1.1.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-waypoint": "^10.1.0",
+    "rimraf": "^2.7.1",
+    "styled-components": "^5.3.5",
+    "wallet-address-validator": "^0.2.4",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -30,6 +39,10 @@
       "react-app/jest"
     ]
   },
+  "resolutions": {
+    "//": "See https://github.com/facebook/create-react-app/issues/11773",
+    "react-error-overlay": "6.0.9"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -41,5 +54,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-error-overlay": "6.0.9"
   }
 }

@@ -1,8 +1,8 @@
 /*global chrome*/
-import firebase from 'firebase/app'
+import firebase from "firebase/app";
 
 import * as dotenv from "dotenv";
-import 'firebase/messaging'
+import "firebase/messaging";
 dotenv.config();
 
 var firebaseConfig = {
@@ -13,50 +13,54 @@ var firebaseConfig = {
   storageBucket: "epns-ethereum-push-service.appspot.com",
   messagingSenderId: "915758146133",
   appId: "1:915758146133:web:2de388356233f5c22f2adc",
-  measurementId: "G-X1L5P2E4EP"
+  measurementId: "G-X1L5P2E4EP",
 };
 
-firebase.initializeApp(firebaseConfig)
-const messaging = firebase.messaging()
+firebase.initializeApp(firebaseConfig);
+const messaging = firebase.messaging();
 
 export const getToken = () => {
   return new Promise(async (resolve, reject) => {
-    const numOfAttempts = 3
-    let tries = 1
-    let attempting = true
+    const numOfAttempts = 3;
+    let tries = 1;
+    let attempting = true;
 
     while (attempting) {
       try {
-        const currentToken = await messaging.getToken({vapidKey: "BOMOB--KihZkwM8SQ_OrPEsuu8UcSYiRB9AvMjsWil3WJDmxBEcDex8g4d5rFGgA8U-7esfRM5pvR98jaE1nX0M"});
+        const currentToken = await messaging.getToken({
+          vapidKey:
+            "BOMOB--KihZkwM8SQ_OrPEsuu8UcSYiRB9AvMjsWil3WJDmxBEcDex8g4d5rFGgA8U-7esfRM5pvR98jaE1nX0M",
+        });
 
         if (currentToken) {
-          resolve(currentToken)
-          attempting = false
+          resolve(currentToken);
+          attempting = false;
+        } else {
+          console.error(
+            "No registration token available. Request permission to generate one."
+          );
+          reject(true);
+          attempting = false;
         }
-        else {
-          console.error('No registration token available. Request permission to generate one.')
-          reject(true)
-          attempting = false
-        }
-      }
-      catch(err) {
+      } catch (err) {
         if (tries > numOfAttempts) {
           attempting = false;
-          console.error('FCM | Request retries failed, Error: ', err)
-        }
-        else {
-          console.log("FCM | Request Failed... Retrying: " + tries + " / " + numOfAttempts)
+          console.error("FCM | Request retries failed, Error: ", err);
+        } else {
+          console.log(
+            "FCM | Request Failed... Retrying: " + tries + " / " + numOfAttempts
+          );
         }
       }
 
-      tries = tries + 1
+      tries = tries + 1;
     }
-  })
-}
+  });
+};
 
 export const onMessageListener = () =>
   new Promise((resolve) => {
     messaging.onMessage((payload) => {
-      resolve(payload)
-    })
-  })
+      resolve(payload);
+    });
+  });
