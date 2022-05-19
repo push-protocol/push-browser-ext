@@ -15,8 +15,13 @@ import { BsX } from "react-icons/bs";
 import Spinner from "../../assests/Spinner.svg";
 import { Waypoint } from "react-waypoint";
 import NotifsContext from "../../context/useNotifs";
-import { api, utils, NotificationItem } from "@epnsproject/frontend-sdk";
+import {
+  api,
+  utils,
+  NotificationItem,
+} from "@epnsproject/frontend-sdk-staging";
 import Tooltip from "./Tooltip";
+import Config from "../../config";
 
 const Loader = (props) => {
   const { load } = props;
@@ -144,7 +149,7 @@ export default function NotificationPage() {
         walletAddr,
         NOTIFICATIONS_PER_PAGE,
         page,
-        "https://backend-kovan.epns.io/apis"
+        Config.baseURL
       );
 
       const parsedResponse = utils.parseApiResponse(results);
@@ -166,13 +171,16 @@ export default function NotificationPage() {
         walletAddr,
         NOTIFICATIONS_PER_PAGE,
         1,
-        "https://backend-kovan.epns.io/apis"
+        Config.baseURL
       );
 
       if (!notifs.length) {
         setPage(page + 1);
       }
       const parsedResponse = utils.parseApiResponse(results);
+      chrome.extension
+        .getBackgroundPage()
+        .console.log(parsedResponse, Config.baseURL);
       const map1 = new Map();
       const map2 = new Map();
       results.forEach((each) => {
@@ -202,7 +210,7 @@ export default function NotificationPage() {
         walletAddr,
         NOTIFICATIONS_PER_PAGE,
         pageSpam,
-        "https://backend-kovan.epns.io/apis"
+        Config.baseURL
       );
       const parsedResponse = utils.parseApiResponse(results);
 
@@ -224,7 +232,7 @@ export default function NotificationPage() {
         walletAddr,
         NOTIFICATIONS_PER_PAGE,
         1,
-        "https://backend-kovan.epns.io/apis"
+        Config.baseURL
       );
 
       if (!notifs.length) {

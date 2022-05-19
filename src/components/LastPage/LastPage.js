@@ -42,7 +42,7 @@ export default function LastPage(props) {
 
     const registerNoAuth = async (object) => {
       const response = await axios.post(
-        "https://backend.epns.io/apis/pushtokens/register_no_auth",
+        "https://backend-prod.epns.io/apis/pushtokens/register_no_auth",
         object
       );
       setLoader(false);
