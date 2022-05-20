@@ -178,9 +178,7 @@ export default function NotificationPage() {
         setPage(page + 1);
       }
       const parsedResponse = utils.parseApiResponse(results);
-      chrome.extension
-        .getBackgroundPage()
-        .console.log(parsedResponse, Config.baseURL);
+
       const map1 = new Map();
       const map2 = new Map();
       results.forEach((each) => {
