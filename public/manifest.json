@@ -1,7 +1,7 @@
 {
   "name": "EPNS Protocol (Alpha)",
   "description": "Receive Notifications from Web3.0.\n\nIntroducing Ethereum Push Notification Service (EPNS) - The Missing Piece of Web3.",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "index.html",
@@ -23,11 +23,12 @@
     "scripts": ["background.js"],
     "persistent": true
   },
-  "content_security_policy": "script-src 'self' 'sha256-G3Kz1I8/7XpFKsnzcqwUW6tETCcESP3q0yJbcK+IXDg=' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
+  "content_security_policy": "script-s rc 'self' 'sha256-G3Kz1I8/7XpFKsnzcqwUW6tETCcESP3q0yJbcK+IXDg=' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com; object-src 'self'",
   "permissions": [
     "background",
     "storage",
-    "notifications"
+    "notifications",
+    "tabs"
   ]
 }
 

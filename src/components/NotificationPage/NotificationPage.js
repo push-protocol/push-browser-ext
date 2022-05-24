@@ -131,14 +131,18 @@ export default function NotificationPage() {
       }
     });
     if (wallet) {
+      updateWallet(wallet);
       callLatestNotifs();
     }
+  }, [wallet]);
+
+  const updateWallet = (wallet) => {
     let walletTemp = wallet;
     let fh = walletTemp.slice(0, 6);
     let sh = walletTemp.slice(-6);
     let final = fh + "...." + sh;
     setAddr(final);
-  }, [wallet]);
+  };
 
   const callNotifs = async () => {
     setBgUpdateLoading(true);
@@ -178,7 +182,6 @@ export default function NotificationPage() {
         setPage(page + 1);
       }
       const parsedResponse = utils.parseApiResponse(results);
-
       const map1 = new Map();
       const map2 = new Map();
       results.forEach((each) => {
