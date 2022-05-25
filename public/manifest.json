@@ -27,8 +27,7 @@
   "permissions": [
     "background",
     "storage",
-    "notifications",
-    "tabs"
+    "notifications"
   ]
 }
 
