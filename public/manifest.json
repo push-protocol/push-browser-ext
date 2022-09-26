@@ -1,11 +1,11 @@
 {
-  "name": "Push (EPNS) Protocol (Alpha)",
-  "description": "Receive Notifications from Web3.0.\n\nIntroducing Push (EPNS) - The Missing Piece of Web3.",
+  "name": "Push Protocol (Alpha)",
+  "description": "Receive Notifications from Web3.0.\n\nIntroducing Push (Previously EPNS) - The Missing Piece of Web3.",
   "version": "0.2.7",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "Push (EPNS) Protocol",
+    "default_title": "Push Protocol",
     "default_icon": {
       "16": "/images/get_started16.png",
       "32": "/images/get_started32.png",
