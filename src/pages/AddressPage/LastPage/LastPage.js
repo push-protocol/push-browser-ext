@@ -125,7 +125,7 @@ export default function LastPage(props) {
             </div>
             <div>
               <span className="slide-left last-epns-text regular">
-                <b>PUSH</b>
+                <b>PUSH </b>
                 is all setup and ready to rock!
               </span>
             </div>
