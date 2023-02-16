@@ -4,7 +4,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-chrome-extension-router";
 import { makeStyles } from "@material-ui/core/styles";
-import NotificationPage from "../../NotificationPage/NotificationPage";
+import NotificationPage, {
+  convertWalletAddressForSocket,
+} from "../../NotificationPage/NotificationPage";
 import "./Last.css";
 import { BsArrowRight } from "react-icons/bs";
 import { FaCheckCircle } from "react-icons/fa";
@@ -12,6 +14,7 @@ import Transitions2 from "../../../components/Transitions/Transitions2";
 import gsap from "gsap";
 import Spinner from "../../../assests/Spinner.svg";
 import Config from "../../../config";
+import { convertAddressToAddrCaip } from "../../../utils/utils";
 
 const useStyles = makeStyles((theme) => ({
   loader: {
@@ -31,6 +34,7 @@ export default function LastPage(props) {
     const address = props.address;
     // const password=props.password
     const token = props.token;
+    let user = convertAddressToAddrCaip(address);
     const object = {
       op: "register",
       wallet: address.toLowerCase(),
@@ -144,7 +148,10 @@ export default function LastPage(props) {
                 <b>channels</b> and start receiving <b>notifications</b>.
               </p>
             </div>
-            <Link component={NotificationPage}>
+            <Link
+              component={NotificationPage}
+              props={{ wallet: props.address }}
+            >
               <button className="button hover-effect">
                 <span className="button-text bold-font">Continue</span>
                 <i className="button-icon">
